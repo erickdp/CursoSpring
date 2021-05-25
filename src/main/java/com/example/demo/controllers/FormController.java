@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -22,16 +21,8 @@ public class FormController {
     
     // Se extraen los valores a traves del protocolo http request
     @PostMapping("/form")
-    public String procesar(Model model, 
-            @RequestParam(name = "username") String username, // Se puede usar para definir que valor se usa para extraer
-            @RequestParam String password,
-            @RequestParam String email) {
-        
-        Usuario usuario = new Usuario(); // Corresponden a los pojos
-        usuario.setUsername(username);
-        usuario.setPassword(password);
-        usuario.setEmail(email);
-        
+    public String procesar(Usuario usuario, Model model) { 
+//        Se mappea de manera automatica al tener el mismo nombre de los campos en el html, es necesario tener setter en la entidad
         model.addAttribute("titulo", "Resultado Form");
         model.addAttribute("usuario", usuario);
         

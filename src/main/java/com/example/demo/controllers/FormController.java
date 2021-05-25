@@ -17,7 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class FormController {
     
     @GetMapping("/form")
-    public String form(@ModelAttribute("user") Usuario usuario, Model model) { // El objeto se inicializa y pasa al formulario de manera automatica o se puede hacer manual con model.add...
+    public String form(Model model) { // El objeto se inicializa y pasa al formulario de manera automatica o se puede hacer manual con model.add...
+        Usuario usuario = new Usuario();
+        usuario.setNombre("Erick");
+        usuario.setApellido("Apellido");
+        usuario.setIdentificador("123.232K");
+        
+        model.addAttribute("user", usuario);
         model.addAttribute("titulo", "Formulario de Usuario");
         return "form";
     }
@@ -29,7 +35,6 @@ public class FormController {
         model.addAttribute("titulo", "Resultado Form");
         
         if(result.hasErrors()) {
-            
             return "form";
         }
         

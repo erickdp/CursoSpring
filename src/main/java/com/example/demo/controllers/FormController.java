@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.domain.Usuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,10 +27,13 @@ public class FormController {
             @RequestParam String password,
             @RequestParam String email) {
         
+        Usuario usuario = new Usuario(); // Corresponden a los pojos
+        usuario.setUsername(username);
+        usuario.setPassword(password);
+        usuario.setEmail(email);
+        
         model.addAttribute("titulo", "Resultado Form");
-        model.addAttribute("username", username);
-        model.addAttribute("password", password);
-        model.addAttribute("email", email);
+        model.addAttribute("usuario", usuario);
         
         return "resultado";
     }

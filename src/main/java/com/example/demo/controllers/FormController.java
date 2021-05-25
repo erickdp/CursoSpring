@@ -1,7 +1,6 @@
 package com.example.demo.controllers;
 
 import com.example.demo.domain.Usuario;
-import java.util.HashMap;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,11 +29,7 @@ public class FormController {
         model.addAttribute("titulo", "Resultado Form");
         
         if(result.hasErrors()) {
-            var errores = new HashMap<String, String>();
-            result.getFieldErrors().forEach(err -> {
-                errores.put(err.getField(), "El campo ".concat(err.getField()).concat(" ").concat(err.getDefaultMessage())); // Se obtiene el input donde fallo y el valor
-            });
-            model.addAttribute("error", errores);
+            
             return "form";
         }
         

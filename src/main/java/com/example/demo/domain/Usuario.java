@@ -12,7 +12,7 @@ public class Usuario {
 
     private String identificador;
 
-    @NotEmpty(message = "El nombre no puede ser vacio") // Es mejor usarlo desde un properties
+    @NotEmpty
     private String nombre;
 
     @NotEmpty

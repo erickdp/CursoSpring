@@ -2,7 +2,6 @@ package com.example.demo.domain;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 /**
@@ -11,10 +10,8 @@ import javax.validation.constraints.Size;
  */
 public class Usuario {
     
-    @Pattern(regexp = "[0-9]{2}[.,][\\d]{3}[.,][\\d]{3}[-][A-Z]{1}") // \\d significa de 0-9 {} y aqui se define la cantidadc [,.] es punto o coma
     private String identificador;
 
-    @NotEmpty
     private String nombre;
 
     @NotEmpty

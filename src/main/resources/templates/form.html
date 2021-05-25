@@ -3,9 +3,10 @@
       xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8" />
-        <title>TODO supply a title</title>
+        <title th:text="${titulo}">TODO supply a title</title>
     </head>
     <body>
+        <h3 th:text="${titulo}"></h3>
         <form th:action="@{/form}" method="POST">
             <div>
                 <label for="username">Username</label>

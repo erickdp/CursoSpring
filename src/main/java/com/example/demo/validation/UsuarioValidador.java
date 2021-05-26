@@ -10,7 +10,7 @@ import org.springframework.validation.Validator;
  *
  * @author Erick Diaz
  */
-@Component // Registro como un contenedor de spring
+@Component // Registro como un contenedor de spring, esta validacion es propia de spring
 public class UsuarioValidador implements Validator {
 
     @Override
@@ -20,19 +20,8 @@ public class UsuarioValidador implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        var usuario = (Usuario) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "requerido.usuario.nombre"); // Primera forma
-
-        /* Segunda forma
-        if(usuario.getNombre().isEmpty()) {
-            errors.rejectValue("nombre", "NotEmpty.user.nombre");
-        }
-         */
-        
-        if (!usuario.getIdentificador().matches("[0-9]{2}[.,][\\d]{3}[.,][\\d]{3}[-][A-Z]{1}")) {
-            errors.rejectValue("identificador", "pattern.usuario.identificador");
-        }
 
     }
 

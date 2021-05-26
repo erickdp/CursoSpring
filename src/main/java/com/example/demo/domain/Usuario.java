@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import com.example.demo.validation.IdentificadorRegex;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Size;
  */
 public class Usuario {
     
+    @IdentificadorRegex
     private String identificador;
 
     private String nombre;

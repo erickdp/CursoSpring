@@ -2,8 +2,12 @@ package com.example.demo.domain;
 
 import com.example.demo.validation.IdentificadorRegex;
 import com.example.demo.validation.Requerido;
+import java.util.Date;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -11,7 +15,7 @@ import javax.validation.constraints.Size;
  * @author Erick Diaz
  */
 public class Usuario {
-    
+
     @IdentificadorRegex
     private String identificador;
 
@@ -30,6 +34,21 @@ public class Usuario {
     @Requerido
     @Email(message = "Correo con formato invalido")
     private String email;
+
+    @NotNull // Not null es para objetos si fuera por ejemplo int seria con min 
+    @Min(5)
+    @Max(5000)
+    private Integer cuenta;
+
+    private Date fechaNacimiento;
+
+    public Integer getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Integer cuenta) {
+        this.cuenta = cuenta;
+    }
 
     public String getUsername() {
         return username;
@@ -77,5 +96,13 @@ public class Usuario {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 }

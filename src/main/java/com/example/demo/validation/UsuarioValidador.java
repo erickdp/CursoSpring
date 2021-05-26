@@ -22,7 +22,7 @@ public class UsuarioValidador implements Validator {
     public void validate(Object o, Errors errors) {
         var usuario = (Usuario) o;
 
-        ValidationUtils.rejectIfEmpty(errors, "nombre", "NotEmpty.user.nombre"); // Primera forma
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "requerido.usuario.nombre"); // Primera forma
 
         /* Segunda forma
         if(usuario.getNombre().isEmpty()) {

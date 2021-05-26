@@ -1,6 +1,7 @@
 package com.example.demo.domain;
 
 import com.example.demo.validation.IdentificadorRegex;
+import com.example.demo.validation.Requerido;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -16,7 +17,7 @@ public class Usuario {
 
     private String nombre;
 
-    @NotEmpty
+    @Requerido
     private String apellido;
 
     @NotEmpty // Sea distinto de null y que tenga longitud mayor a 0
@@ -26,7 +27,7 @@ public class Usuario {
     @NotEmpty
     private String password;
 
-    @NotEmpty
+    @Requerido
     @Email(message = "Correo con formato invalido")
     private String email;
 

@@ -37,7 +37,7 @@ public class FormController {
     public String form(Model model) { // El objeto se inicializa y pasa al formulario de manera automatica o se puede hacer manual con model.add...
         Usuario usuario = new Usuario();
         usuario.setNombre("Erick");
-        usuario.setApellido("Apellido");
+        usuario.setApellido("Diaz");
         usuario.setIdentificador("123.232K");
         
         model.addAttribute("user", usuario);

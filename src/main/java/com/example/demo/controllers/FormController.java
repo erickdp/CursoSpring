@@ -6,7 +6,9 @@ import com.example.demo.validation.UsuarioValidador;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -49,7 +51,7 @@ public class FormController {
     
     @GetMapping("/form")
     public String form(Model model) { // El objeto se inicializa y pasa al formulario de manera automatica o se puede hacer manual con model.add...
-        Usuario usuario = new Usuario();
+        var usuario = new Usuario();
         usuario.setNombre("Erick");
         usuario.setApellido("Diaz");
         usuario.setIdentificador("123.232K");
@@ -78,6 +80,17 @@ public class FormController {
     @ModelAttribute("paises") // Este metodo sera tomado por todo los metodos handler para ser usado en la vista, paises sera el nombre para acceder
     public List<String> paises() {
         return Arrays.asList("Mexico", "Chile", "Ecuador", "Colombia", "Venezuela");
+    }
+    
+    @ModelAttribute("paisesMap")
+    public Map<String, String> paisesMap() {
+        var paises = new HashMap<String, String>();
+        paises.put("EC", "Ecuador");
+        paises.put("CO", "Colombia");
+        paises.put("CL", "Chile");
+        paises.put("VE", "Venezuela");
+        paises.put("MX", "Mexico");
+        return paises;
     }
     
 }

@@ -1,10 +1,13 @@
 package com.example.demo.controllers;
 
 import com.example.demo.domain.Pais;
+import com.example.demo.domain.Role;
 import com.example.demo.domain.Usuario;
 import com.example.demo.editors.NombreMayusculaEditor;
 import com.example.demo.editors.PaisPropertyEditor;
+import com.example.demo.editors.RolePropertyEditor;
 import com.example.demo.services.PaisService;
+import com.example.demo.services.RoleService;
 import com.example.demo.validation.UsuarioValidador;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,6 +46,12 @@ public class FormController {
     
     @Autowired
     private PaisPropertyEditor paisPropertyEditor;
+    
+    @Autowired
+    private RoleService roleService;
+    
+    @Autowired
+    private RolePropertyEditor rolePropertyEditor;
 
     // El validador de las anotaciones por defecto se cambia por el personalizado
     @InitBinder    
@@ -60,6 +69,8 @@ public class FormController {
         
 //        Se registra para poder validar el objeto de pais pero debo de enviar solamente el valor de id
         binder.registerCustomEditor(Pais.class, "pais", this.paisPropertyEditor);
+        
+        binder.registerCustomEditor(Role.class, "roles", this.rolePropertyEditor);
     }
     
     @GetMapping("/form")
@@ -108,21 +119,30 @@ public class FormController {
     
     @ModelAttribute("listaPaises")
     public List<Pais> listaPaises() {
-        return Arrays.asList(
-                new Pais(1, "ME", "Mexico"), 
-                new Pais(2, "CL", "Chile"), 
-                new Pais(3, "EC", "Ecuador"), 
-                new Pais(4, "CO", "Colombia"), 
-                new Pais(5, "VE", "Venezuela"));
+        return this.paisService.listar();
     }
     
-    @ModelAttribute("listaRoles")
-    public List<String> listaRoles() {
+    @ModelAttribute("listaRolesString")
+    public List<String> listaRolesString() {
         var roles = new ArrayList<String>();
         roles.add("ROL_ADMIN");
         roles.add("ROL_USER");
         roles.add("ROL_MODERATOR");
         return roles;
+    }
+    
+    @ModelAttribute("listaRolesMap")
+    public Map<String, String> listaRolesMap() {
+        var roles = new HashMap<String, String>();
+        roles.put("ROL_ADMIN", "Administrador");
+        roles.put("ROL_USER", "Usuario");
+        roles.put("ROL_MODERATOR", "Moderador");
+        return roles;
+    }
+    
+    @ModelAttribute("listaRoles")
+    public List<Role> listaRoles() {
+        return this.roleService.listar();
     }
     
 }

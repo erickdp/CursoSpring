@@ -49,8 +49,8 @@ public class Usuario {
     @NotNull
     private Pais pais;
 
-    @NotEmpty
-    private List<String> roles;
+    @NotNull
+    private List<Role> roles;
 
     public Pais getPais() {
         return pais;
@@ -124,11 +124,11 @@ public class Usuario {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public List<String> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 }

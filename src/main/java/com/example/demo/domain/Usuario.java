@@ -3,7 +3,7 @@ package com.example.demo.domain;
 import com.example.demo.validation.IdentificadorRegex;
 import com.example.demo.validation.Requerido;
 import java.util.Date;
-import javax.validation.Valid;
+import java.util.List;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
@@ -46,8 +46,11 @@ public class Usuario {
     @Future
     private Date fechaNacimiento;
 
-    @Valid
+    @NotNull
     private Pais pais;
+
+    @NotEmpty
+    private List<String> roles;
 
     public Pais getPais() {
         return pais;
@@ -119,5 +122,13 @@ public class Usuario {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }

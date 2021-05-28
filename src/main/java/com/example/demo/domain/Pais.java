@@ -1,16 +1,12 @@
 package com.example.demo.domain;
 
-import javax.validation.constraints.NotNull;
-
 /**
  *
  * @author Erick Diaz
  */
 public class Pais {
 
-    @NotNull // Debo validar que no sea nulo
     private Integer id;
-    
     private String codigo;
     private String nombre;
 

@@ -9,16 +9,23 @@
         <h3 th:text="${titulo}"></h3>
         <form th:action="@{/form}" method="POST" th:object="${user}">
             <div>
-                <label for="pais.id">Pais</label>
+                <label for="pais">Pais</label>
                 <div>
-                    <select id="pais" th:field="*{pais.id}">
+                    <select id="pais" th:field="*{pais}">
                         <option value="">-- Seleccionar --</option>
                         <option th:each="pais : ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option>
                     </select>
                 </div>
-                <div th:if="${#fields.hasErrors('pais.id')}" th:errors="*{pais.id}"></div>
+                <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
             </div>
             <div>
+                <label for="roles">Roles</label>
+                <div th:each="role : ${listaRoles}">
+                    <input type="checkbox" th:field="*{roles}" th:value="${role}"/>
+                    <label th:for="${#ids.prev('roles')}" th:text="${role}"></label> <!-- Asigna el id para cada input se especifica del field -->
+                </div>
+                <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
+            </div>
             <div>
                 <label for="identificador">Identificador</label>
                 <div>
@@ -51,7 +58,7 @@
                 <label for="password">Password</label>
                 <div>
                     <input type="password" id="password" th:field="*{password}" />
-                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                 </div>
             </div>
             <div>

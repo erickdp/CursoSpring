@@ -3,6 +3,8 @@ package com.example.demo.controllers;
 import com.example.demo.domain.Pais;
 import com.example.demo.domain.Usuario;
 import com.example.demo.editors.NombreMayusculaEditor;
+import com.example.demo.editors.PaisPropertyEditor;
+import com.example.demo.services.PaisService;
 import com.example.demo.validation.UsuarioValidador;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,6 +37,12 @@ public class FormController {
     
     @Autowired
     private UsuarioValidador validador;
+    
+    @Autowired
+    private PaisService paisService;
+    
+    @Autowired
+    private PaisPropertyEditor paisPropertyEditor;
 
     // El validador de las anotaciones por defecto se cambia por el personalizado
     @InitBinder    
@@ -49,6 +57,9 @@ public class FormController {
 //        Registramos para que se pueda usar mayusculas
         binder.registerCustomEditor(String.class, "nombre", new NombreMayusculaEditor()); // Pasamos nuestro custom editor y el campo específico a pasarlo a mayus, si no se define lo toma para todos los campos
         binder.registerCustomEditor(String.class, "apellido", new NombreMayusculaEditor());
+        
+//        Se registra para poder validar el objeto de pais pero debo de enviar solamente el valor de id
+        binder.registerCustomEditor(Pais.class, "pais", this.paisPropertyEditor);
     }
     
     @GetMapping("/form")
@@ -103,6 +114,15 @@ public class FormController {
                 new Pais(3, "EC", "Ecuador"), 
                 new Pais(4, "CO", "Colombia"), 
                 new Pais(5, "VE", "Venezuela"));
+    }
+    
+    @ModelAttribute("listaRoles")
+    public List<String> listaRoles() {
+        var roles = new ArrayList<String>();
+        roles.add("ROL_ADMIN");
+        roles.add("ROL_USER");
+        roles.add("ROL_MODERATOR");
+        return roles;
     }
     
 }

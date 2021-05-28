@@ -1,9 +1,11 @@
 package com.example.demo.controllers;
 
+import com.example.demo.domain.Pais;
 import com.example.demo.domain.Usuario;
 import com.example.demo.editors.NombreMayusculaEditor;
 import com.example.demo.validation.UsuarioValidador;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -91,6 +93,16 @@ public class FormController {
         paises.put("VE", "Venezuela");
         paises.put("MX", "Mexico");
         return paises;
+    }
+    
+    @ModelAttribute("listaPaises")
+    public List<Pais> listaPaises() {
+        return Arrays.asList(
+                new Pais(1, "ME", "Mexico"), 
+                new Pais(2, "CL", "Chile"), 
+                new Pais(3, "EC", "Ecuador"), 
+                new Pais(4, "CO", "Colombia"), 
+                new Pais(5, "VE", "Venezuela"));
     }
     
 }

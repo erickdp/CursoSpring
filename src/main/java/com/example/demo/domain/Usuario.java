@@ -3,6 +3,7 @@ package com.example.demo.domain;
 import com.example.demo.validation.IdentificadorRegex;
 import com.example.demo.validation.Requerido;
 import java.util.Date;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
@@ -45,14 +46,14 @@ public class Usuario {
     @Future
     private Date fechaNacimiento;
 
-    @NotEmpty
-    private String pais;
+    @Valid
+    private Pais pais;
 
-    public String getPais() {
+    public Pais getPais() {
         return pais;
     }
 
-    public void setPais(String pais) {
+    public void setPais(Pais pais) {
         this.pais = pais;
     }
 

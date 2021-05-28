@@ -2,8 +2,11 @@ package com.example.demo.controllers;
 
 import com.example.demo.domain.Usuario;
 import com.example.demo.validation.UsuarioValidador;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +34,10 @@ public class FormController {
     public void initBinder(WebDataBinder binder) { // Otra forma de validar los parametros enviados es usando este metodo
 //        binder.setValidator(validador); Valida solo los datos definidos en la calse validador
         binder.addValidators(validador); // Valida todos
+        
+        var sdf = new SimpleDateFormat("yyyy-MM-dd"); // Solo este formato es valido para las fechas en html
+        sdf.setLenient(false); // Permite que no haya fechas sin formatos, no es tolerante
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, false));
     }
     
     @GetMapping("/form")

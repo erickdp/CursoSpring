@@ -4,7 +4,9 @@ import com.example.demo.domain.Usuario;
 import com.example.demo.editors.NombreMayusculaEditor;
 import com.example.demo.validation.UsuarioValidador;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -71,6 +73,11 @@ public class FormController {
 //        model.addAttribute("usuario", usuario); // El Pojo usuario se pasa al formulario de manera automatica o manual
         status.setComplete(); // Limpia los datos usados en sessionAttributes
         return "resultado";
+    }
+    
+    @ModelAttribute("paises") // Este metodo sera tomado por todo los metodos handler para ser usado en la vista, paises sera el nombre para acceder
+    public List<String> paises() {
+        return Arrays.asList("Mexico", "Chile", "Ecuador", "Colombia", "Venezuela");
     }
     
 }

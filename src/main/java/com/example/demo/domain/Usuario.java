@@ -51,6 +51,8 @@ public class Usuario {
 
     @NotNull
     private List<Role> roles;
+    
+    private boolean habilitar;
 
     public Pais getPais() {
         return pais;
@@ -130,5 +132,13 @@ public class Usuario {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public boolean isHabilitar() {
+        return habilitar;
+    }
+
+    public void setHabilitar(boolean habilitar) {
+        this.habilitar = habilitar;
     }
 }

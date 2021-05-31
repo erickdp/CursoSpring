@@ -80,7 +80,8 @@ public class FormController {
         usuario.setApellido("Diaz");
         usuario.setIdentificador("123.232K");
         usuario.setHabilitar(true);
-        
+        usuario.setValorSecreto("Algo secreto"); // Este campo se va a usar con el atributo hidden en las etiquetas de los archivos html
+         
         model.addAttribute("user", usuario);
         model.addAttribute("titulo", "Formulario de Usuario");
         return "form";
@@ -144,6 +145,11 @@ public class FormController {
     @ModelAttribute("listaRoles")
     public List<Role> listaRoles() {
         return this.roleService.listar();
+    }
+    
+    @ModelAttribute("generos")
+    private List<String> listaGeneros() {
+        return Arrays.asList("Hombre", "Mujer");
     }
     
 }

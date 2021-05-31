@@ -16,13 +16,9 @@
             </div>
             <div>
                 <label>Genero</label>
-                <div>
-                    <input type="radio" id="genero1" th:field="*{genero}" value="hombre"/>
-                    <label for="genero1">Hombre</label>
-                </div>
-                <div>
-                    <input type="radio" id="genero2" th:field="*{genero}" value="mujer"/>
-                    <label for="genero2">Mujer</label>
+                <div th:each="gen : ${generos}">
+                    <input type="radio" th:field="*{genero}" th:value="${gen}"/>
+                    <label th:for="${#ids.prev('genero')}" th:text="${gen}"></label>
                 </div>
                 <div th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"></div>
             </div>
@@ -105,6 +101,7 @@
                     <input type="submit" value="Enviar"  />
                 </div>
             </div>
+            <input type="hidden" th:field="*{valorSecreto}" />
         </form>
     </body>
 </html>

@@ -51,7 +51,18 @@ public class Usuario {
 
     @NotNull
     private List<Role> roles;
-    
+
+    @NotEmpty
+    private String genero;
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
     private boolean habilitar;
 
     public Pais getPais() {

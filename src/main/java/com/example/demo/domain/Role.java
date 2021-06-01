@@ -43,4 +43,20 @@ public class Role {
         this.rol = rol;
     }
 
+    
+//    Este metodo se implementa para compara los objetos pasados por la lista y que se comparen por valor de id con respecto a la lista pasada
+    @Override
+    public boolean equals(Object obj) {
+        
+        if(this == obj) {
+            return true;
+        }
+        
+        if(!(obj instanceof Role)) {
+            return false;
+        }
+        
+        Role rol = (Role) obj;
+        return this.id != null && rol.getId().equals(this.id);
+    }
 }

@@ -43,4 +43,10 @@ public class Pais {
         this.nombre = nombre;
     }
 
+//    Debo agregar el toString para que se pueda comparar en el formulario el atributo th:value con th:field ya que no puede ser comparado como objetos
+    @Override
+    public String toString() {
+        return id.toString();
+    }
+
 }

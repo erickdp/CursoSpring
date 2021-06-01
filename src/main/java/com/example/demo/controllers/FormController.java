@@ -106,7 +106,7 @@ public class FormController {
     }
 
 //    Este metodo es para que cuando se cargue neuvamente el formulario los datos no se queden guardando y evitando duplicados 
-    @GetMapping("/ver")
+    @GetMapping("/ver") // Obtengo el usuario actualizado con los campos llenados, al momento de recargar como ya se eliminar me devolverá al form
     public String ver(@SessionAttribute(name = "user", required = false) Usuario usuario, Model model, SessionStatus status) {
 //        El usuario se pasa a la vista de manera automatica como ya se a visto
         if (usuario == null) {

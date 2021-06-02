@@ -7,6 +7,7 @@
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     </head>
     <body>
+        <section th:replace="componentes/tiempo :: interceptor" />
         <h3 th:text="${titulo}"></h3>
         <div class="container">
             <form th:action="@{/form}" method="POST" th:object="${user}">

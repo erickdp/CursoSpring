@@ -79,7 +79,7 @@ public class FormController {
         var usuario = new Usuario();
         usuario.setNombre("Erick");
         usuario.setApellido("Diaz");
-        usuario.setIdentificador("123.232K");
+        usuario.setIdentificador("12,123.232-K");
         usuario.setHabilitar(true);
         usuario.setPais(new Pais(3, "EC", "Ecuador"));
         usuario.setRoles(Arrays.asList(new Role(1, "Administrador", "ROL_ADMIN")));

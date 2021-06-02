@@ -20,7 +20,36 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(TiempoTranscurridoInterceptor.class);
 
     @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            return true; // Si se aplica al metodo /form pero es post ya no se aplica el codigo pero igual usa el metodo post
+        }
+
+        if (handler instanceof HandlerMethod) {
+            HandlerMethod metodo = (HandlerMethod) handler;
+            logger.info("es un método controlador: ".concat(metodo.getMethod().getName()));
+        }
+
+        logger.info("TiempoTranscurridoInterceptor: preHandle() entrado...");
+
+        long tiempoInicio = System.currentTimeMillis();
+        request.setAttribute("tiempoInicio", tiempoInicio);
+
+        Random random = new Random();
+        Integer demora = random.nextInt(200);
+        Thread.sleep(demora);
+
+        return true;
+    }
+
+    @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+        if (request.getMethod().equalsIgnoreCase("post")) { // valida para que no de null pointer
+            return; // sale del void
+        }
+
         long tiempoFin = System.currentTimeMillis();
         long tiempoInicio = (long) request.getAttribute("tiempoInicio");
         long tiempoTranscurrido = tiempoFin - tiempoInicio;
@@ -31,26 +60,6 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
 
         logger.info("Tiempo transcurrido: ".concat(String.valueOf(tiempoFin)).concat(" ms"));
         logger.info("TiempoTranscurridoInterceptor: posHandle() saliendo...");
-    }
-
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        
-        if (handler instanceof HandlerMethod) { 
-            HandlerMethod metodo = (HandlerMethod) handler;
-            logger.info("es un método controlador: ".concat(metodo.getMethod().getName()));
-        }
-        
-        logger.info("TiempoTranscurridoInterceptor: preHandle() entrado...");
-
-        long tiempoInicio = System.currentTimeMillis();
-        request.setAttribute("tiempoInicio", tiempoInicio);
-
-        Random random = new Random();
-        Integer demora = random.nextInt(500);
-        Thread.sleep(demora);
-
-        return true;
     }
 
 }

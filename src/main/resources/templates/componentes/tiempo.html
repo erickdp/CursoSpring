@@ -2,7 +2,7 @@
       xmlns="http://www.w3.org/1999/xhtml">
     <body>
         <section th:fragment="interceptor">
-            <div class="alert alert-success">
+            <div class="alert alert-success" th:if="${tiempoTranscurrido != null}">
                 <span th:text="'Tiempo transcurrido ' + ${tiempoTranscurrido} + ' en ms'"></span>
             </div>
         </section>
